@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :require_login
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -52,6 +53,12 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def require_login
+    unless current_user
+      redirect_to new_user_session_path
+    end
+  end
 
   def find_post
     @post = Post.find(params[:id])

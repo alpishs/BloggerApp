@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_login
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -63,6 +64,13 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def require_login
+      unless current_user
+        redirect_to new_user_session_path
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       debugger

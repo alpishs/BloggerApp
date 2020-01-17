@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :require_login
   before_action :find_commentable
 
   def new
@@ -16,6 +17,12 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def require_login
+    unless current_user
+      redirect_to new_user_session_path
+    end
+  end
 
   def comment_params
     params.require(:comment).permit(:body)

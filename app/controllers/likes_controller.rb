@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :require_login
+
   def create
     post = Post.find( params[:post_id] )
 
@@ -10,5 +12,13 @@ class LikesController < ApplicationController
     end
 
     redirect_to posts_path
+  end
+
+  private
+
+  def require_login
+    unless current_user
+      redirect_to new_user_session_path
+    end
   end
 end

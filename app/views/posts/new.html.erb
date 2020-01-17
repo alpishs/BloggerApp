@@ -13,17 +13,16 @@
 
   <div class="actions">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "form-control form-group" %>
 
     <%= form.label :post_text %>
-    <%= form.text_field :post_text %>
+    <%= form.text_field :post_text , class: "form-control form-group"%>
 
-    <%= form.file_field :avatar %>
-
-    <%= form.submit %>
+    <%= form.file_field :avatar , class: "btn form-group"%>
   </div>
 
-  <div class="row">
-    <%= link_to "Back", :back %>
+  <div class="actions">
+    <%= form.submit "Create Post", :class => 'btn btn-success' %>
+    <%= link_to "Back", :back, :class => 'btn btn-primary' %>
   </div>
 <% end %>
