@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts=current_user.posts
+    @posts=current_user.posts if current_user.present?
   end
 
   def show
