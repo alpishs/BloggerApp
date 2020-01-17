@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/blog_app.iml" filepath="$PROJECT_DIR$/.idea/blog_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../rails-template/.idea/rails-template.iml" filepath="$PROJECT_DIR$/../rails-template/.idea/rails-template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../upload_pic/.idea/upload_pic.iml" filepath="$PROJECT_DIR$/../upload_pic/.idea/upload_pic.iml" />
+    </modules>
+  </component>
+</project>

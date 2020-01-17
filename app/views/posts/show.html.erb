@@ -1,0 +1,54 @@
+
+<div class="view intro-2" style="">
+  <div class="full-bg-img">
+    <div class="mask rgba-purple-light flex-center">
+      <div class="container text-center white-text wow fadeInUp">
+        <div class="row">
+          <%= link_to "Go Back", posts_path, class: "btn btn-primary"%>
+        </div>
+        <h2><%=h truncate(@post.title, :length => 80) %></h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="break-text"></di><p align="justify"> <%=@post.post_text %></p>
+
+<large class="font-weight-bold text-danger">Submitted <%= time_ago_in_words(@post.created_at) %> ago</large>
+<hr>
+<% if @post.avatar.attached? %>
+  <%= image_tag @post.avatar.variant(resize: '800x600'), class: "form-group auto-resize" %>
+<% end %>
+</div>
+
+<% liked = Like.find_by( post: @post, user: current_user ) != nil %>
+<% btn_color = liked ? "warning" : "default" %>
+
+<%= link_to "Like", post_likes_path( @post ), method: :get, class: "btn btn-#{btn_color} btn-primary", disabled: !user_signed_in? %>
+<hr>
+
+<h3>Comments</h3>
+
+<%= form_for [@post, Comment.new] do |f| %>
+  <%= f.text_area :body, placeholder: "Add a comment" %><br/>
+  <%= f.submit "Add Comment" %>
+<% end %>
+
+<ul class="form-group">
+  <%= render @post.comments %>
+</ul>
+
+
+
+<style>
+  .break-text {
+    word-wrap: break-word;
+  }
+  .auto-resize {
+    max-width: 100%;
+    display: block;
+    height: auto;
+  }
+</style>
