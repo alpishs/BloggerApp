@@ -1,11 +1,17 @@
 Below functionalities has been integrated into Application:
 
 a) Login Sign in/ Sign up.
+
 b) Ability of a user to add a blog post which is a combination of text and an image.
+
 c) User can comment on these posts.
+
 d) User is also able to reply on comments. Bonus: Make the replies two level deeper.
+
 e) User is able to like a post.
+
 f)Test cases & Comments. 
+
 g) Deployed Application to heroku server.
 
 How to Run this Application:
