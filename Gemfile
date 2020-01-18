@@ -57,3 +57,5 @@ gem 'devise'
 gem "font-awesome-rails"
 gem 'devise-bootstrap-views'
 gem 'bootstrap-sass'
+gem 'factory_girl_rails'
+gem 'rails-controller-testing'

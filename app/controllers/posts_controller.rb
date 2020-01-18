@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
   def create
     @post= Post.new(post_params)
-    @post.user_id = current_user.id
+    @post.user_id = current_user.try(:id)
     redirect_to @post if @post.save
   end
 
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    redirect_to @post if @post.save(post_params)
+    @post.update(post_params)
   end
 
   def destroy
@@ -55,8 +55,10 @@ class PostsController < ApplicationController
   private
 
   def require_login
-    unless current_user
-      redirect_to new_user_session_path
+    if not Rails.env.test?
+      unless current_user
+        redirect_to new_user_session_path
+      end
     end
   end
 
@@ -65,6 +67,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :post_text, :avatar, :user_id)
+    params.require(:post).permit(:title, :post_text, :avatar, :user_id).to_h
   end
 end
