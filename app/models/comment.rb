@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
 
   before_create :set_level
 
+  #Logic for making replies two level deeper
   def set_level
     return true if self.commentable_type == "Post"
     raise ActiveRecord::Rollback if self.commentable_type == "Comment" && !self.commentable.level.nil? && self.commentable.level > 2

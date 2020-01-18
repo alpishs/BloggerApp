@@ -25,7 +25,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    debugger
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -65,20 +64,20 @@ class UsersController < ApplicationController
 
   private
 
-    def require_login
-      unless current_user
-        redirect_to new_user_session_path
-      end
+  #allowing access to current user logged in
+  def require_login
+    unless current_user
+      redirect_to new_user_session_path
     end
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      debugger
-      @user = User.find(current_user.id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(current_user.id)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email)
+  end
 end

@@ -36,9 +36,9 @@ class PostsController < ApplicationController
     @likes = @user.likes.joins( :post ).order( "posts.created_at DESC" )
   end
 
+  #method for liking and disliking a particular post
   def likes
       post = Post.find( params[:post_id] )
-
       if like = Like.find_by( post: post, user: current_user )
         like.destroy
       else
@@ -54,6 +54,7 @@ class PostsController < ApplicationController
 
   private
 
+  #allowing access to current user logged in
   def require_login
     if not Rails.env.test?
       unless current_user
@@ -62,10 +63,12 @@ class PostsController < ApplicationController
     end
   end
 
+  #fetching and setting instance variable of @post to perform CRUD operations
   def find_post
     @post = Post.find(params[:id])
   end
 
+  #strong parameters for post CRUD
   def post_params
     params.require(:post).permit(:title, :post_text, :avatar, :user_id).to_h
   end
